@@ -1,0 +1,210 @@
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; background:#87CEEB; font-family:Arial,Helvetica,sans-serif }
+canvas { display:block }
+#ui { position:fixed; left:12px; top:12px; color:#fff; z-index:10; text-shadow:0 1px 2px rgba(0,0,0,0.6) }
+#score { font-weight:700; font-size:18px; margin-bottom:6px }
+#help { font-size:13px; opacity:0.9 }
+#restart { margin-top:6px; padding:6px 10px; font-size:14px }
+
+/* Overlay bij Game Over */
+.hidden { display:none !important }
+
+/* Ensure hidden wins over menu/shop display rules */
+#main-menu.hidden,
+#skin-shop.hidden {
+  display: none !important;
+}
+#overlay { position:fixed; left:0; top:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center; z-index:20 }
+.overlay-box { background:rgba(0,0,0,0.6); color:#fff; padding:20px 26px; border-radius:8px; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.5) }
+.overlay-box h1 { margin:0 0 8px 0; font-size:28px }
+.overlay-box #overlay-score { font-size:18px }
+
+/* Main Menu */
+#main-menu {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  background: rgba(135, 206, 235, 0.78);
+  backdrop-filter: blur(8px);
+}
+
+.menu-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 50px 60px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.game-title {
+  font-size: 48px;
+  margin: 0 0 30px 0;
+  color: #0066cc;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.menu-stats {
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: #333;
+}
+
+.menu-stats div {
+  margin: 8px 0;
+}
+
+.menu-btn {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #0066cc, #0099ff);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.menu-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.menu-btn:active {
+  transform: translateY(0);
+}
+
+.shop-btn {
+  background: linear-gradient(135deg, #9933cc, #cc66ff);
+}
+
+/* Skin Shop */
+#skin-shop {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 35;
+  background: rgba(135, 206, 235, 0.78);
+  backdrop-filter: blur(8px);
+}
+
+.shop-content {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.shop-content h2 {
+  margin: 0 0 20px 0;
+  font-size: 36px;
+  color: #9933cc;
+  text-align: center;
+}
+
+.shop-balance {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.skins-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.skin-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.skin-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.skin-preview {
+  width: 100%;
+  height: 120px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.skin-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.skin-price {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.skin-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.skin-btn:not(.owned):not(.equipped) {
+  background: linear-gradient(135deg, #00cc66, #00ff88);
+  color: white;
+}
+
+.skin-btn:not(.owned):not(.equipped):hover {
+  background: linear-gradient(135deg, #00ff88, #00cc66);
+}
+
+.skin-btn.owned:not(.equipped) {
+  background: linear-gradient(135deg, #0066cc, #0099ff);
+  color: white;
+}
+
+.skin-btn.equipped {
+  background: #666;
+  color: white;
+  cursor: default;
+}
+
+.skin-btn:disabled {
+  background: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Kleine polish: maak slope iets glanzender */
+.slope-snow { roughness:0.8 }
+
+/* Background blur when menu open */
+body.menu-open canvas {
+  filter: blur(5px);
+}
