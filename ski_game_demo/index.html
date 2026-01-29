@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>3D Ski Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Main Menu -->
+  <div id="main-menu">
+    <div class="menu-content">
+      <h1 class="game-title">⛷️ SKI GAME ⛷️</h1>
+      <div class="menu-stats">
+        <div>💰 Totaal Score: <span id="total-score">0</span></div>
+        <div>🏆 Best Score: <span id="menu-best-score">0</span></div>
+      </div>
+      <button id="start-game" class="menu-btn">START GAME</button>
+      <button id="open-shop" class="menu-btn shop-btn">🛒 SKIN SHOP</button>
+    </div>
+  </div>
+
+  <!-- Skin Shop -->
+  <div id="skin-shop" class="hidden">
+    <div class="shop-content">
+      <h2>🛒 SKIN SHOP</h2>
+      <div class="shop-balance">💰 Score: <span id="shop-score">0</span></div>
+      <div class="skins-grid">
+        <div class="skin-item" data-skin="red">
+          <div class="skin-preview" style="background:linear-gradient(135deg, #ff3333, #cc0000)"></div>
+          <div class="skin-name">Classic Red</div>
+          <div class="skin-price">GRATIS</div>
+          <button class="skin-btn equipped">UITGERUST</button>
+        </div>
+        <div class="skin-item" data-skin="blue">
+          <div class="skin-preview" style="background:linear-gradient(135deg, #3399ff, #0066cc)"></div>
+          <div class="skin-name">Arctic Blue</div>
+          <div class="skin-price">500 punten</div>
+          <button class="skin-btn">KOOP</button>
+        </div>
+        <div class="skin-item" data-skin="green">
+          <div class="skin-preview" style="background:linear-gradient(135deg, #33ff66, #00cc33)"></div>
+          <div class="skin-name">Forest Green</div>
+          <div class="skin-price">750 punten</div>
+          <button class="skin-btn">KOOP</button>
+        </div>
+        <div class="skin-item" data-skin="gold">
+          <div class="skin-preview" style="background:linear-gradient(135deg, #ffd700, #ffaa00)"></div>
+          <div class="skin-name">Golden Racer</div>
+          <div class="skin-price">1500 punten</div>
+          <button class="skin-btn">KOOP</button>
+        </div>
+        <div class="skin-item" data-skin="purple">
+          <div class="skin-preview" style="background:linear-gradient(135deg, #cc66ff, #9933cc)"></div>
+          <div class="skin-name">Royal Purple</div>
+          <div class="skin-price">2000 punten</div>
+          <button class="skin-btn">KOOP</button>
+        </div>
+        <div class="skin-item" data-skin="rainbow">
+          <div class="skin-preview" style="background:linear-gradient(135deg, #ff0000, #ff7700, #ffff00, #00ff00, #0099ff, #cc00ff)"></div>
+          <div class="skin-name">Rainbow Legend</div>
+          <div class="skin-price">5000 punten</div>
+          <button class="skin-btn">KOOP</button>
+        </div>
+      </div>
+      <button id="close-shop" class="menu-btn">← TERUG</button>
+    </div>
+  </div>
+
+  <div id="ui" class="hidden">
+    <div id="score">Score: 0</div>
+    <div id="bonus-message" style="display:none; position:fixed; top:75%; left:50%; transform:translate(-50%, -50%); color:#ffff00; padding:30px 60px; font-size:32px; font-weight:bold; z-index:100; text-align:center; text-shadow:2px 2px 4px rgba(0,0,0,0.7)"></div>
+    <div id="help">Gebruik pijl-links/rechts om te sturen</div>
+    <div id="model-status" style="margin-top:6px; font-size:12px; opacity:0.95">Model: fallback</div>
+  </div>
+
+  <div id="overlay" class="hidden">
+    <div class="overlay-box">
+      <h1 id="overlay-title">Game Over</h1>
+      <div id="overlay-score">Score: 0</div>
+       <button id="restart" style="display:none; margin-top:12px; padding:8px 12px; font-size:14px">Herstart</button>
+    </div>
+  </div>
+
+  <!-- Debug Menu -->
+  <div id="debug-menu" style="display:none; position:fixed; top:10px; right:10px; background:rgba(0,0,0,0.9); color:#00ff00; font-family:monospace; font-size:12px; padding:15px; border:2px solid #00ff00; max-width:300px; z-index:1000; border-radius:5px; line-height:1.6">
+    <div style="font-weight:bold; margin-bottom:10px; color:#ffff00">DEBUG MENU (F1)</div>
+    <div>FPS: <span id="debug-fps">0</span></div>
+    <div>Snelheid: <span id="debug-speed">0</span> u/s</div>
+    <div>Max Speed: <span id="debug-maxspeed">0</span> u/s</div>
+    <div>Positie Z: <span id="debug-z">0</span></div>
+    <div>Afstand: <span id="debug-distance">0</span></div>
+    <div>Score: <span id="debug-score">0</span></div>
+    <div>Stuur Vel: <span id="debug-steer">0</span></div>
+    <div>Alive: <span id="debug-alive">true</span></div>
+    <div>Crashed: <span id="debug-crashed">false</span></div>
+  </div>
+
+  <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
